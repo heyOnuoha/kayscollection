@@ -40,7 +40,9 @@ ROOT_URLCONF = 'kaysc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,7 +67,7 @@ DATABASES = {
         'NAME': 'kaysdb',
         'HOST': 'localhost',
         'USER': 'elcentino',
-        'PASSWORD': 'favour2how.roll'
+        'PASSWORD': 'rock'
     }
 }
 
