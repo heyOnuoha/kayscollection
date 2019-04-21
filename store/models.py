@@ -3,7 +3,7 @@ from django.db import models
 
 class Shop(models.Model):
     shop_name = models.CharField(max_length=100)
-    shop_description = models.TextField(black=True)
+    shop_description = models.TextField(blank=True)
     shop_location = models.CharField(max_length=200, blank=True, null=True)
     contact = models.CharField(max_length=100, blank=True, null=True)
 
@@ -31,10 +31,8 @@ class Categories(models.Model):
         ('LEAF', 'LEAF')
     )
 
-    branch = models.ForeignKey(Branch)
+    branch = models.ForeignKey(Branch, on_delete=models.SET_NULL, blank=True, null=True)
     category_type = models.CharField(max_length=5, choices=choices, default='NODE')
-    category_parent = models.ForeignKey('self', null=True)
-    category_root = models.ForeignKey('self', blank=True, null=True)
     category_name = models.CharField(max_length=100)
     category_description = models.TextField(blank=True, null=True)
     category_link_name = models.CharField(max_length=50)
