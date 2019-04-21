@@ -67,7 +67,7 @@ DATABASES = {
         'NAME': 'kaysdb',
         'HOST': 'localhost',
         'USER': 'elcentino',
-        'PASSWORD': 'rock'
+        'PASSWORD': 'rock.roll'
     }
 }
 
@@ -109,4 +109,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'kaysc/static')
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
