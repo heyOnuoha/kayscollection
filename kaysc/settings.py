@@ -67,7 +67,7 @@ DATABASES = {
         'NAME': 'kaysdb',
         'HOST': 'localhost',
         'USER': 'elcentino',
-        'PASSWORD': 'rock.roll'
+        'PASSWORD': 'rock'
     }
 }
 
