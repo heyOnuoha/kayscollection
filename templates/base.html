@@ -24,12 +24,25 @@
 
 
 	{% include 'partials/sidebar.html' %}
-	
-	{% block content %}
-		
-	{% endblock content %}
-		
 
+	<div class="super_container">
+
+			<!-- Header -->
+		
+			{% include 'partials/header.html' %}
+		
+			<div class="super_container_inner">
+				
+					{% block content %}
+		
+					{% endblock content %}
+
+				{% include 'partials/footer.html' %}
+			</div>
+				
+		</div>
+	
+	
 
 	<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'styles/bootstrap-4.1.2/popper.js' %}" type="text/javascript"></script>
