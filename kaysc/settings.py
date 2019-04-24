@@ -67,7 +67,8 @@ DATABASES = {
         'NAME': 'kaysdb',
         'HOST': 'localhost',
         'USER': 'elcentino',
-        'PASSWORD': 'rock'
+        'PASSWORD': 'rock.roll',
+        'PORT': 63333
     }
 }
 
