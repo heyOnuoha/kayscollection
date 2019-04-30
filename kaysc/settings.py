@@ -118,3 +118,4 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+#ssh -L port:localhost:5432 xxxx@xxx.com - for postgres

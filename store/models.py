@@ -23,6 +23,7 @@ class Shop(models.Model):
     shop_name = models.CharField(max_length=100)
     shop_description = models.TextField(blank=True)
     shop_location = models.CharField(max_length=200, blank=True, null=True)
+    shop_logo = models.ImageField(upload_to='photos/logos', blank=True, null=True)
     contact = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
