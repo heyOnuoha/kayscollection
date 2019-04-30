@@ -12,13 +12,18 @@
                             <div class="footer_logo">
                                 <a href="#">
                                     <div class="d-flex flex-row align-items-center justify-content-start">
-                                        <div class="footer_logo_icon"><img src="{% static 'images/logo_2.png' %}" alt=""></div>
-                                        <div>Kay's Collection</div>
+                                    {% if shop_details.shop_logo %}
+                                        <div class="footer_logo_icon"><img src="{{ shop_details.shop_logo.url }}" alt="" width="50" height="50"></div>
+                                    {% else %}
+                                        <div class="footer_logo_icon"><img src="{% static 'images/logo_1.png' %}" alt=""></div>
+                                    {% endif %}
+                                       
+                                        <div>{{ shop_details.shop_name }}</div>
                                     </div>
                                 </a>		
                             </div>
                             <div class="footer_about_text">
-                                <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse potenti. Fusce venenatis vel velit vel euismod.</p>
+                                <p>{{ shop_details.shop_description }}</p>
                             </div>
                         </div>
                     </div>
@@ -81,10 +86,12 @@ Copyright &copy;<script type="text/javascript">document.write(new Date().getFull
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
                             <nav class="footer_nav ml-md-auto order-md-2 order-1">
                                 <ul class="d-flex flex-row align-items-center justify-content-start">
-                                    <li><a href="category.html">Women</a></li>
-                                    <li><a href="category.html">Men</a></li>
-                                    <li><a href="category.html">Kids</a></li>
-                                    <li><a href="category.html">Home Deco</a></li>
+                                    <li><a href="#">Home</a></li>
+
+                                    {% for category in categories_footer %}
+                                        <li><a href="{% url 'specific_categories' category.category_link_name %}">{{category.category_name}}</a></li>
+                                    {% endfor %}
+
                                     <li><a href="#">Contact</a></li>
                                 </ul>
                             </nav>

@@ -18,7 +18,7 @@
             <li><a href="#">Home</a></li>
 
             {% for category in categories %}
-                <li><a href="{% url 'categories' category.category_link_name %}">{{category.category_name}}</a></li>
+                <li><a href="{% url 'specific_categories' category.category_link_name %}">{{category.category_name}}</a></li>
             {% endfor %}
 
             <li><a href="#">Contact</a></li>

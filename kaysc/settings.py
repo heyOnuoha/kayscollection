@@ -68,7 +68,7 @@ DATABASES = {
         'HOST': 'localhost',
         'USER': 'elcentino',
         'PASSWORD': 'rock.roll',
-        'PORT': 63333
+        #'PORT': 63333
     }
 }
 

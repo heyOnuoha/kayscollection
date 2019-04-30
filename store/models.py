@@ -2,10 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 
-
-
-
-
 class Branch(models.Model):
     branch_name = models.CharField(max_length=100)
     branch_location = models.CharField(max_length=200, blank=True, null=True)
@@ -24,6 +20,9 @@ class Shop(models.Model):
     shop_description = models.TextField(blank=True)
     shop_location = models.CharField(max_length=200, blank=True, null=True)
     shop_logo = models.ImageField(upload_to='photos/logos', blank=True, null=True)
+    currency = models.CharField(max_length=10, blank=True, null=True)
+    currency_iso = models.CharField(max_length=3, blank=True, null=True)
+    default_shipping_fee = models.DecimalField(decimal_places=2, max_digits=4, default=15.00)
     contact = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
@@ -81,4 +80,52 @@ class SubCategories(models.Model):
         if self.category.category_type == 'LEAF':
             raise ValidationError('Cannot add subcategory to leaf category type')
         else:
-            super(SubCategories, self).save(self, *args, **kwargs)
+            super(SubCategories, self).save(*args, **kwargs)
+
+class Product(models.Model):
+    product_name = models.CharField(max_length=200)
+    product_link = models.TextField(blank=True, null=True)
+    product_image_main = models.ImageField(upload_to="photos/products")
+    product_image_one = models.ImageField(upload_to="photos/products", blank=True, null=True)
+    product_image_two = models.ImageField(upload_to="photos/products", blank=True, null=True)
+    product_image_three = models.ImageField(upload_to="photos/products", blank=True, null=True)
+    product_image_four = models.ImageField(upload_to="photos/products", blank=True, null=True)
+    product_image_five = models.ImageField(upload_to="photos/products", blank=True, null=True)
+    product_description = models.TextField(blank=True, null=True)
+    has_size = models.BooleanField(default=False)
+    size_xs = models.BooleanField(default=False)
+    size_s = models.BooleanField(default=False)
+    size_m = models.BooleanField(default=False)
+    size_l = models.BooleanField(default=False)
+    size_xl = models.BooleanField(default=False)
+    size_xxl = models.BooleanField(default=False)
+    quantity = models.IntegerField(default=1)
+    free_shipping = models.BooleanField(default=False)
+    ratings = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
+    cost_price = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
+    selling_price = models.DecimalField(decimal_places=2, max_digits=4)
+    category = models.ForeignKey(Categories, blank=True, null=True, on_delete=models.CASCADE)
+    subcategories = models.ForeignKey(SubCategories, blank=True, null=True, on_delete=models.CASCADE)
+    discount_percentage = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
+    views = models.IntegerField(default=0)
+
+
+    def save(self, *args, **kwargs):
+
+        if self.subcategories is not None:
+            self.category = self.subcategories.category
+
+        # if self.free_shipping == False:
+        #     pass
+            
+
+        self.product_link = self.product_name.replace('', '-')
+
+        super(Product, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.product_name
+
+    class Meta:
+        db_table = 'SH_Products'
+    

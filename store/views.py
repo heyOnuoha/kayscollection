@@ -11,6 +11,7 @@ def index(request):
 
     context = {
         'categories': categories,
+        'categories_footer': categories[0:3],
         'shop_details': shop_details
     }
 
@@ -18,7 +19,15 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def categories(request, category_name):
+def categories(request):
 
-    return HttpResponse('hello')
+    return HttpResponse('categories')
+
+def specific_categories(request, category_name):
+
+    return HttpResponse('specific categories here')
+
+def subcategories(reques, category_name, subcategory_name):
+
+    return HttpResponse('sub category here')
 

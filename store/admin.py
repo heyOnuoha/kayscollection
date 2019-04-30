@@ -1,8 +1,5 @@
 from django.contrib import admin
-
-
-
-from .models import Shop, Branch, Categories, SubCategories
+from .models import Shop, Branch, Categories, SubCategories, Product
 
 class ShopAdmin(admin.ModelAdmin):
     list_display = ('id', 'shop_name', 'shop_description')
@@ -20,8 +17,12 @@ class SubCategoriesAdmin(admin.ModelAdmin):
     list_display = ('id', 'category_name', 'category_link_name', 'category')
     list_display_links = ('id', 'category_name', 'category')
 
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('id', 'product_name', 'has_size', 'quantity', 'selling_price', 'free_shipping', 'ratings')
+
 
 admin.site.register(Shop, ShopAdmin)
 admin.site.register(Branch, BranchAdmin)
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(SubCategories, SubCategoriesAdmin)
+admin.site.register(Product, ProductAdmin)

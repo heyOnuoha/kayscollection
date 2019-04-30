@@ -6,7 +6,12 @@
 			<div class="logo">
 				<a href="#">
 					<div class="d-flex flex-row align-items-center justify-content-start">
-						<div><img src="{% static 'images/logo_1.png' %}" alt=""></div>
+						{% if shop_details.shop_logo %}
+							<div><img src="{{ shop_details.shop_logo.url }}" alt="" width="50" height="50"></div>
+						{% else %}
+							<div><img src="{% static 'images/logo_1.png' %}" alt=""></div>
+						{% endif %}
+						
 						<div>{{ shop_details.shop_name }}</div>
 					</div>
 				</a>	
