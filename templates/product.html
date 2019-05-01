@@ -53,59 +53,79 @@
 						<div class="product_image_slider_container">
 							<div id="slider" class="flexslider">
 								<ul class="slides">
+                                    
 									<li>
 										<img src="{{ product.product_image_main.url }}" />
 									</li>
-									<li>
-										<img src="{{ product.product_image_main.url }}" />
-									</li>
-									<li>
-										<img src="{{ product.product_image_main.url }}" />
-									</li>
-									<li>
-										<img src="{{ product.product_image_main.url }}" />
-									</li>
-									<li>
-										<img src="{{ product.product_image_main.url }}" />
-									</li>
-									<li>
-										<img src="{{ product.product_image_main.url }}" />
-									</li>
-									<li>
-										<img src="{{ product.product_image_main.url }}" />
-									</li>
-									<li>
-										<img src="{{ product.product_image_main.url }}" />
-									</li>
+                                    {% if product.product_image_one %}
+                                        <li>
+										    <img src="{{ product.product_image_one.url }}" />
+									    </li>
+                                    {% endif %}
+
+                                    {% if product.product_image_two %}
+                                        <li>
+										    <img src="{{ product.product_image_two.url }}" />
+									    </li>
+                                    {% endif %}
+
+                                    {% if product.product_image_three %}
+                                        <li>
+										    <img src="{{ product.product_image_three.url }}" />
+									    </li>
+                                    {% endif %}
+
+                                    {% if product.product_image_four %}
+                                        <li>
+										    <img src="{{ product.product_image_four.url }}" />
+									    </li>
+                                    {% endif %}
+
+                                    {% if product.product_image_five %}
+                                        <li>
+										    <img src="{{ product.product_image_five.url }}" />
+									    </li>
+                                    {% endif %}
+									
+								
 								</ul>
 							</div>
 							<div class="carousel_container">
 								<div id="carousel" class="flexslider">
 									<ul class="slides">
-										<li>
-											<div><img src="{{ product.product_image_main.url }}" /></div>
-										</li>
-										<li>
-											<div><img src="{{ product.product_image_main.url }}" /></div>
-										</li>
-										<li>
-											<div><img src="{{ product.product_image_main.url }}" /></div>
-										</li>
-										<li>
-											<div><img src="{{ product.product_image_main.url }}" /></div>
-										</li>
-										<li>
-											<div><img src="{{ product.product_image_main.url }}" /></div>
-										</li>
-										<li>
-											<div><img src="{{ product.product_image_main.url }}" /></div>
-										</li>
-										<li>
-											<div><img src="{{ product.product_image_main.url }}" /></div>
-										</li>
-										<li>
-											<div><img src="images/product_8.jpg" /></div>
-										</li>
+                                        <li>
+                                            <div><img src="{{ product.product_image_main.url }}" /></div>
+                                        </li>
+                                        {% if product.product_image_one %}
+                                            <li>
+                                                <div><img src="{{ product.product_image_one.url }}" /></div>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if product.product_image_two %}
+                                            <li>
+                                                <div><img src="{{ product.product_image_two.url }}" /></div>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if product.product_image_three %}
+                                            <li>
+                                                <div><img src="{{ product.product_image_three.url }}" /></div>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if product.product_image_four %}
+                                            <li>
+                                                <div><img src="{{ product.product_image_four.url }}" /></div>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if product.product_image_five %}
+                                            <li>
+                                                <div><img src="{{ product.product_image_five.url }}" /></div>
+                                            </li>
+                                    {% endif %}
+										
 									</ul>
 								</div>
 								<div class="fs_prev fs_nav disabled"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
@@ -196,7 +216,12 @@
 							<div class="mt-auto"><div class="box_image"><img src="{% static 'images/boxes_2.png' %}" alt=""></div></div>
 							<div class="box_content">
 								<div class="box_title">Shipping</div>
-								<div class="box_text">{% if product.free_shipping %}Free Shipping{% endif %}</div>
+								<div class="box_text">
+                                    {% if product.free_shipping %}
+                                        Free Shipping
+                                    {% else %}
+                                        Standard Delivery fee <b>{{ shop_details.currency_iso }}{{ shop_details.default_shipping_fee }}</b>
+                                    {% endif %}</div>
 							</div>
 						</div>
 					</div>
