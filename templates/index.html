@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extrascripts %}
-    <script src="{% static 'js/custom.js' %}" type="text/javascript"></script>
-{% endblock extrascripts %}
-
 {% block extrastyles %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
@@ -38,8 +34,9 @@
                         {% for category in hit_categories %}
                              <li class="{% if category == hit_categories.0 %} active {% endif %}"><a href="{% url 'specific_categories' category.category_link_name %}">{{category.category_name}}</a></li>
                         {% endfor %}
+                        <li><a href="{% url 'specific_categories' 'new-products'%}">New Products</a></li>
                         {% comment %} <li class="active"><a href="category.html">Women</a></li>
-                        <li><a href="category.html">Men</a></li>
+                        
                         <li><a href="category.html">Kids</a></li>
                         <li><a href="category.html">Home Deco</a></li> {% endcomment %}
                     </ul>
@@ -151,7 +148,14 @@
     </div>
 </div>
 
-
+    {% block extrascripts %}
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/rocket-loader.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'styles/bootstrap-4.1.2/popper.js' %}" type="text/javascript"></script>
+        <script src="{% static 'styles/bootstrap-4.1.2/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/custom.js' %}" type="text/javascript"></script>
+    {% endblock extrascripts %}
 
 {% endblock content %}
 

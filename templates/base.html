@@ -43,10 +43,6 @@
 		</div>
 	
 	
-
-	<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
-	<script src="{% static 'styles/bootstrap-4.1.2/popper.js' %}" type="text/javascript"></script>
-	<script src="{% static 'styles/bootstrap-4.1.2/bootstrap.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'plugins/greensock/TweenMax.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'plugins/greensock/TweenMax.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}" type="text/javascript"></script>
@@ -57,12 +53,6 @@
 	<script src="{% static 'plugins/progressbar/progressbar.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}" type="text/javascript"></script>
 	<script src="{% static 'js/rater.js' %}" type="text/javascript"></script>
-
-	<script src="{% static 'js/rocket-loader.min.js' %}" type="text/javascript"></script>
-
-	{% block extrascripts %}
-
-	{% endblock extrascripts %}
 
 	<script>
 		$(".rating").rate();
@@ -75,6 +65,10 @@
 		$(".rating").rate(options);
 
 	</script>
+
+	{% block extrascripts %}
+
+	{% endblock extrascripts %}
 </body>
 
 <!-- Mirrored from colorlib.com/preview/theme/littlecloset/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 22 Apr 2019 11:47:00 GMT -->

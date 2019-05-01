@@ -67,6 +67,7 @@ class SubCategories(models.Model):
     category_name = models.CharField(max_length=100)
     category_description = models.TextField(blank=True, null=True)
     category_link_name = models.CharField(max_length=50, unique=True)
+    hit = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
@@ -120,10 +121,6 @@ class Product(models.Model):
 
         if self.subcategory is not None:
             self.category = self.subcategory.category
-
-        # if self.free_shipping == False:
-        #     pass
-            
 
         self.product_link = "-".join(self.product_name.split(" "))
         self.product_link = self.product_link.lower()
