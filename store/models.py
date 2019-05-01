@@ -49,7 +49,8 @@ class Categories(models.Model):
     category_type = models.CharField(max_length=5, choices=choices, default='NODE')
     category_name = models.CharField(max_length=100)
     category_description = models.TextField(blank=True, null=True)
-    category_link_name = models.CharField(max_length=50)
+    category_link_name = models.CharField(max_length=50, unique=True)
+    hit = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
@@ -65,7 +66,7 @@ class SubCategories(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     category_name = models.CharField(max_length=100)
     category_description = models.TextField(blank=True, null=True)
-    category_link_name = models.CharField(max_length=50)
+    category_link_name = models.CharField(max_length=50, unique=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
@@ -101,25 +102,31 @@ class Product(models.Model):
     size_xxl = models.BooleanField(default=False)
     quantity = models.IntegerField(default=1)
     free_shipping = models.BooleanField(default=False)
-    ratings = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
-    cost_price = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
-    selling_price = models.DecimalField(decimal_places=2, max_digits=4)
+    ratings = models.DecimalField(decimal_places=2, max_digits=15, blank=True, null=True)
+    cost_price = models.DecimalField(decimal_places=2, max_digits=15, blank=True, null=True)
+    selling_price = models.DecimalField(decimal_places=2, max_digits=15)
     category = models.ForeignKey(Categories, blank=True, null=True, on_delete=models.CASCADE)
-    subcategories = models.ForeignKey(SubCategories, blank=True, null=True, on_delete=models.CASCADE)
-    discount_percentage = models.DecimalField(decimal_places=2, max_digits=4, blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategories, blank=True, null=True, on_delete=models.CASCADE)
+    discount_percentage = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     views = models.IntegerField(default=0)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    @property
+    def split_price(self):
+        return str(self.selling_price).split('.')
 
 
     def save(self, *args, **kwargs):
 
-        if self.subcategories is not None:
-            self.category = self.subcategories.category
+        if self.subcategory is not None:
+            self.category = self.subcategory.category
 
         # if self.free_shipping == False:
         #     pass
             
 
-        self.product_link = self.product_name.replace('', '-')
+        self.product_link = "-".join(self.product_name.split(" "))
+        self.product_link = self.product_link.lower()
 
         super(Product, self).save(*args, **kwargs)
 
