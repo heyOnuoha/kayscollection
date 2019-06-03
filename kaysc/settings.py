@@ -66,7 +66,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'kaysdb',
-        'HOST': 'localhost',
+        'HOST': 'beta.elcentino.com',
         'USER': 'elcentino',
         'PASSWORD': 'rock.roll',
         #'PORT': 63333
